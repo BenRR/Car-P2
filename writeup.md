@@ -216,6 +216,6 @@ Original image
 
 Featuremaps of Conv layer 1
 
-[image8]: images/featuremaps_visual.png "CNN Feature Map Visualization"
+![feature maps][image8]
 
 We can see that the curve of the circles of the roundabout also the three round arrows are all picked up by the featuremaps.
