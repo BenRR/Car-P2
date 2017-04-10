@@ -2,7 +2,7 @@
 
 ---
 
-** Build a Traffic Sign Recognition Project**
+** Build a Traffic Sign Recognition Project **
 
 The goals / steps of this project are the following:
 * Load the data set (see below for links to the project data set)
@@ -30,7 +30,7 @@ Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/4
 ---
 ### Writeup / README
 
-You're reading it! and here is a link to my [project code](Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my project code [html](Traffic_Sign_Classifier.html) [notebook](Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
@@ -47,7 +47,7 @@ signs data set:
 
 #### 2. Include an exploratory visualization of the dataset.
 
-I used matlibplot to show the distribution of training, validation and test sets
+I used matlibplot to show the distribution of training, validation and test sets:
 
 ![alt text][image3] ![alt text][image4] ![alt text][image5]
 
