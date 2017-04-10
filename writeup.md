@@ -18,6 +18,13 @@ The goals / steps of this project are the following:
 [image6]: images/web_test_images.png "Traffic Sign Images From Internet"
 [image7]: images/web_test_top_k.png "Top 5 Predictions"
 [image8]: images/featuremaps_visual.png "CNN Feature Map Visualization"
+[image9]: images/test1.png "1st web image"
+[image10]: images/test2.png "2nd web image"
+[image11]: images/test3.png "3rd web image"
+[image12]: images/test4.png "4th web image"
+[image13]: images/test5.png "5th web image"
+[image14]: images/prob_hist.png "prob distribution"
+
 
 ## Rubric Points
 Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -94,6 +101,7 @@ My final hyperparameters:
 * BATCH_SIZE = 400
 * L2_PENALTY = 0.012
 * learing_rate = 0.0008
+* dropout keep_prob = 0.4
 
 #### 4. Describe the approach taken for finding a solution.
 
@@ -110,54 +118,96 @@ I use only 25 EPOCHS because after that the accuracy did not improve much. The l
 * Final test accuracy = 0.957
 
 If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+* I started with LeNet from the lecture the I got training accuracy around 0.92
+* Then I adjust the fully connected layers' nodes according to google's LeNet implementation and reduced the learning rate
+* And training accuracy was really good, around 0.99 after 30 EPOCHS but validation accuracy was very low, around 0.75
+* I believed that it was a clear sign of overfitting.
+* So I made two changes. 1) add L2 regularization loss 2) introduce dropout keep_prob 0.5
+* Then I saw a great improvement of validation accuracy to 0.90 which I believed still overfitting
+* Then I tuned the following hyperparameters, increased the L2 regularization penalty and decreased dropout keep_prob from 0.5 to 0.4
+* Finally the validation accuracy can reach above 0.95 then I increased the learning_rate a little to fast the training process
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6]
-![alt text][image7] ![alt text][image8]
+![test images from web][image6]
 
-The first image might be difficult to classify because ...
+I think the first, second and last images should be easy to classify because the signs are at the center of the pictures without much noise.
+Third and forth images have some background colors might cause some difficulties.
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
-
+#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set.
 Here are the results of the prediction:
 
 | Image			        |     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
-| Stop Sign      		| Stop sign   									|
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Roundabout mandatory      		| Roundabout mandatory   									|
+| Speed limit (60km/h)     			| No passing 										|
+| Right-of-way at the next intersection					| Right-of-way at the next intersection											|
+| Speed limit (20km/h)	      		| General caution					 				|
+| Children crossing			| Children crossing      							|
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 3 of the 5 traffic signs, which gives an accuracy of 60%. This compares favorably to the accuracy on the test set of 95.7%
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability.
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+![web image 1][image9]
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the first image, the model is confidently sure that this is a "Roundabout mandatory" (probability of 1.0), and the image is a roundabout. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					|
 |:---------------------:|:---------------------------------------------:|
-| .60         			| Stop sign   									|
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| 1.0         			| Roundabout mandatory    									|
 
+![web image 2][image10]
 
-For the second image ...
+For the second image, the model is relatively sure that this is a "No passing" (probability of 0.82), unfortunately it is horribly wrong, the image is a Speed limit (60km/h). I suspect the horizontal metal bar in the picture confused the model. The top five soft max probabilities all contains horizontal bar shape block.
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
+| .82         			| No Passing    									|
+| .069    				| Keep left 										|
+| .043					| No vehicles											|
+| .028	      			| No passing for vehicles over 3.5 metric tons				 				|
+| .016				    | Double curve      							|
+
+![web image 3][image11]
+
+For the third image, the model is very sure that this is a "Right-of-way at the next intersection" (probability of 0.997), and the image is a right-of-way at the next intersection. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
+| .997         			| Right-of-way at the next intersection    									|
+| .001     				| Double curve										|
+| .001					| Pedestrians											|
+
+![web image 4][image12]
+
+For the first image, the model thinks that this is a "General caution" (probability of 0.349), and the image is a Speed limit (20km/h) which is also in the top five predictions with probability 0.115. And the second prediction is "Speed limit 30km/h" with a quite high probability. The distribution of prediction probability is:
+
+![prediction distribution][image14]
+
+The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
+| .349         			| General caution    									|
+| .325     				| Speed limit (30km/h) 										|
+| .115					| Speed limit (20km/h)											|
+| .09	      			| End of speed limit (80km/h)					 				|
+| .0052				    | End of all speed and passing limits      							|
+
+![web image 1][image13]
+
+For the last image, the model is quite sure that this is a "Children crossing" (probability of 0.998), and the image is a 0.998. The top five soft max probabilities were
+
+| Probability         	|     Prediction	        					|
+|:---------------------:|:---------------------------------------------:|
+| .998         			| Children crossing    									|
+| .002     				| Right-of-way at the next intersection 										|
+
+### Visualizing the Neural Network
 ####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
