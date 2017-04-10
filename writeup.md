@@ -15,14 +15,14 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image1]: ./images/sample.jpg "Sample Image"
+[image2]: ./images/stand_sample.jpg "Standardized Sample"
+[image3]: ./images/train_hist.jpg "Training Set Distribution"
+[image4]: ./images/valid_hist.jpg "Validation Set Distribution"
+[image5]: ./images/test_hist.jpg "Test Set Distribution"
+[image6]: ./images/web_test_images.png "Traffic Sign Images From Internet"
+[image7]: ./images/web_test_top_k.png "Top 5 Predictions"
+[image8]: ./images/featuremaps_visual.png "CNN Feature Map Visualization"
 
 ## Rubric Points
 Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -34,22 +34,22 @@ You're reading it! and here is a link to my [project code](https://github.com/Be
 
 ### Data Set Summary & Exploration
 
-####1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
+#### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-I used the pandas library to calculate summary statistics of the traffic
+I used the numpy library to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* Number of training set = 34799
+* Number of validation set = 4410
+* Number of testing set = 12630
+* Image data shape = 32 * 32
+* Number of classes = 43
 
-####2. Include an exploratory visualization of the dataset.
+#### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+I used matlibplot to show the distribution of training, validation and test sets
 
-![alt text][image1]
+![alt text][image3] ![alt text][image4] ![alt text][image5]
 
 ###Design and Test a Model Architecture
 
@@ -102,6 +102,23 @@ My final model results were:
 * training set accuracy of ?
 * validation set accuracy of ?
 * test set accuracy of ?
+
+EPOCH 23 ...
+loss 0.23210427165031433
+Train Accuracy = 0.998
+Validation Accuracy = 0.949
+
+EPOCH 24 ...
+loss 0.22875630855560303
+Train Accuracy = 0.999
+Validation Accuracy = 0.967
+
+EPOCH 25 ...
+loss 0.2072317749261856
+Train Accuracy = 0.999
+Validation Accuracy = 0.952
+
+Test Accuracy = 0.957
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
