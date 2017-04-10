@@ -210,4 +210,12 @@ For the last image, the model is quite sure that this is a "Children crossing" (
 | .002     				| Right-of-way at the next intersection 										|
 
 ### Visualizing the Neural Network
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
+Original image
+
+![web image 1][image9]
+
+Featuremaps of Conv layer 1
+
+[image8]: images/featuremaps_visual.png "CNN Feature Map Visualization"
+
+We can see that the curve of the circles of the roundabout also the three round arrows are all picked up by the featuremaps.
