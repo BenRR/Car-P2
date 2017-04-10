@@ -15,11 +15,11 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: images/sample.jpg "Sample Image"
-[image2]: images/stand_sample.jpg "Standardized Sample"
-[image3]: images/train_hist.jpg "Training Set Distribution"
-[image4]: images/valid_hist.jpg "Validation Set Distribution"
-[image5]: images/test_hist.jpg "Test Set Distribution"
+[image1]: images/sample.png "Sample Image"
+[image2]: images/stand_sample.png "Standardized Sample"
+[image3]: images/train_hist.png "Training Set Distribution"
+[image4]: images/valid_hist.png "Validation Set Distribution"
+[image5]: images/test_hist.png "Test Set Distribution"
 [image6]: images/web_test_images.png "Traffic Sign Images From Internet"
 [image7]: images/web_test_top_k.png "Top 5 Predictions"
 [image8]: images/featuremaps_visual.png "CNN Feature Map Visualization"
